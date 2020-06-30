@@ -111,7 +111,8 @@ inputsDict = {
     'txtAddress': '9999 Test Drive',
     'txtCity': 'Testtown',
     'txtState': 'Teststate',
-    'txtZip': '99999',    
+    'txtZip': '99999',
+    'txtTaxRate': '9'    
 }
 
 for inputId, val in inputsDict.items():
