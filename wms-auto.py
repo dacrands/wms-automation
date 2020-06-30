@@ -56,7 +56,7 @@ for frame in appIframes:
 # Wait for DOM to load
 time.sleep(SLEEP_LONG)
 
-# greenbardropdowntable
+# Select the inventory module
 modulesDropdown = browser.find_element_by_id('greenbardropdowntable')
 modulesDropdown.click()
 moduleItems = browser.find_elements_by_class_name('mitem')
