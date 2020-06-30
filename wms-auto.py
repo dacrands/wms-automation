@@ -41,6 +41,7 @@ elif APP_ENV == 'PROD':
 else:
     print('Please set APP_ENV to either TEST or PROD')
 
+# TODO Replace sleeps with WebDriverWait
 # Wait for DOM to load
 time.sleep(SLEEP_SHORT)
 
@@ -64,3 +65,11 @@ for mod in moduleItems:
     if mod.get_attribute('modid') == 'IN':        
         mod.click()
         break
+
+# Wait for DOM to load
+time.sleep(SLEEP_SHORT)
+
+# Select the new button to create
+# an inventory item
+newItemBtn = browser.find_element_by_css_selector("img[src='images/toolbar/new.jpg']")
+newItemBtn.click()
