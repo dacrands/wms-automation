@@ -87,7 +87,11 @@ browser.switch_to.frame(inputsIframe)
 inputsDict = {
     'txtCompany': '999999',
     'txtCompanyName': 'Test Company',
-    'txtType': 'V'
+    'txtType': 'V',
+    'txtAddress': '9999 Test Drive',
+    'txtCity': 'Testtown',
+    'txtState': 'Teststate',
+    'txtZip': '99999',
 }
 
 for inputId, val in inputsDict.items():
