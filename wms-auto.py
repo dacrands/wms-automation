@@ -75,3 +75,21 @@ time.sleep(SLEEP_SHORT)
 # an inventory item
 newItemBtn = browser.find_element_by_css_selector("img[src='images/toolbar/new.jpg']")
 newItemBtn.click()
+
+# Wait for DOM to load
+time.sleep(SLEEP_SHORT)
+
+# Switch to iFrame containing inputs
+inputsIframe = browser.find_element_by_id('fraTopic')
+browser.switch_to.frame(inputsIframe)
+
+# Fill out inputs
+inputsDict = {
+    'txtCompany': '999999',
+    'txtCompanyName': 'Test Company',
+    'txtType': 'V'
+}
+
+for inputId, val in inputsDict.items():
+    companyIdInput = browser.find_element_by_id(inputId)
+    companyIdInput.send_keys(val)
