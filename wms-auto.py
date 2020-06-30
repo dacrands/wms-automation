@@ -4,9 +4,11 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 
 APP_ENV = "TEST"
-MANAGER_APP_IFRAME_SRC = "http://fs3s-wms/mc_web/onsite/mc_appchoice.htm"
 SLEEP_SHORT = 2
 SLEEP_LONG = 4
+
+MANAGER_APP_IFRAME_SRC = 'http://fs3s-wms/mc_web/onsite/mc_appchoice.htm'
+MODULE_ID = 'CM'
 
 browser = webdriver.Chrome()
 browser.get('http://fs3s-wms/mc_web/onsite/default.htm')
@@ -62,7 +64,7 @@ modulesDropdown = browser.find_element_by_id('greenbardropdowntable')
 modulesDropdown.click()
 moduleItems = browser.find_elements_by_class_name('mitem')
 for mod in moduleItems:
-    if mod.get_attribute('modid') == 'IN':        
+    if mod.get_attribute('modid') == MODULE_ID:        
         mod.click()
         break
 
