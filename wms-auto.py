@@ -3,6 +3,9 @@ import time
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 
+# ===========================
+#         CONSTANTS
+# ===========================
 APP_ENV = "TEST"
 SLEEP_SHORT = 2
 SLEEP_LONG = 4
@@ -10,9 +13,16 @@ SLEEP_LONG = 4
 MANAGER_APP_IFRAME_SRC = 'http://fs3s-wms/mc_web/onsite/mc_appchoice.htm'
 MODULE_ID = 'CM'
 
+# ===========================
+#        DRIVER INIT
+# ===========================
 browser = webdriver.Chrome()
 browser.get('http://fs3s-wms/mc_web/onsite/default.htm')
 
+
+# ===========================
+#           LOGIN
+# ===========================
 # Access the login page
 loginPageBtn = browser.find_element_by_name('alogin')
 loginPageBtn.send_keys(Keys.RETURN)
@@ -24,14 +34,18 @@ usernameInput.send_keys('admin')
 passwordInput = browser.find_element_by_name('fld_password')
 passwordInput.send_keys(os.environ['WMS_PW'])
 
-# Login
-# This is an img with a click event
+# Click the login btn, which is an img with a click event
 loginBtn = browser.find_element_by_css_selector("img[src='images/mc_okbutton_opt.jpg']")
 loginBtn.send_keys(Keys.RETURN)
 
+# TODO Replace sleeps with WebDriverWait
 # Wait for DOM to load
 time.sleep(SLEEP_SHORT)
 
+
+# ===========================
+#          APP ENV
+# ===========================
 # There are two buttons, one for each env (TEST and PROD)
 # Click the first to access TEST click the second to access PROD
 testEnvBtns = browser.find_elements_by_class_name('browseicon')
@@ -43,10 +57,13 @@ elif APP_ENV == 'PROD':
 else:
     print('Please set APP_ENV to either TEST or PROD')
 
-# TODO Replace sleeps with WebDriverWait
 # Wait for DOM to load
 time.sleep(SLEEP_SHORT)
 
+
+# ===========================
+#         APP SELECT
+# ===========================
 # Select `managerapp` from iframe
 appIframes = browser.find_elements_by_tag_name('iframe')
 for frame in appIframes:    
@@ -71,8 +88,11 @@ for mod in moduleItems:
 # Wait for DOM to load
 time.sleep(SLEEP_SHORT)
 
-# Select the new button to create
-# an inventory item
+
+# ===========================
+#          NEW ITEM
+# ===========================
+# Select the new button to create an inventory item
 newItemBtn = browser.find_element_by_css_selector("img[src='images/toolbar/new.jpg']")
 newItemBtn.click()
 
@@ -83,7 +103,7 @@ time.sleep(SLEEP_SHORT)
 inputsIframe = browser.find_element_by_id('fraTopic')
 browser.switch_to.frame(inputsIframe)
 
-# Fill out inputs
+# Fill out inputs using dict
 inputsDict = {
     'txtCompany': '999999',
     'txtCompanyName': 'Test Company',
@@ -91,7 +111,7 @@ inputsDict = {
     'txtAddress': '9999 Test Drive',
     'txtCity': 'Testtown',
     'txtState': 'Teststate',
-    'txtZip': '99999',
+    'txtZip': '99999',    
 }
 
 for inputId, val in inputsDict.items():
