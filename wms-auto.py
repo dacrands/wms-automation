@@ -35,7 +35,8 @@ passwordInput = browser.find_element_by_name('fld_password')
 passwordInput.send_keys(os.environ['WMS_PW'])
 
 # Click the login btn, which is an img with a click event
-loginBtn = browser.find_element_by_css_selector("img[src='images/mc_okbutton_opt.jpg']")
+loginBtn = browser.find_element_by_css_selector(
+    "img[src='images/mc_okbutton_opt.jpg']")
 loginBtn.send_keys(Keys.RETURN)
 
 # TODO Replace sleeps with WebDriverWait
@@ -66,9 +67,9 @@ time.sleep(SLEEP_SHORT)
 # ===========================
 # Select `managerapp` from iframe
 appIframes = browser.find_elements_by_tag_name('iframe')
-for frame in appIframes:    
-    if frame.get_attribute('src') == MANAGER_APP_IFRAME_SRC:        
-        browser.switch_to.frame(frame)        
+for frame in appIframes:
+    if frame.get_attribute('src') == MANAGER_APP_IFRAME_SRC:
+        browser.switch_to.frame(frame)
         managerApp = browser.find_element_by_id('managerapp')
         managerApp.click()
         break
@@ -81,7 +82,7 @@ modulesDropdown = browser.find_element_by_id('greenbardropdowntable')
 modulesDropdown.click()
 moduleItems = browser.find_elements_by_class_name('mitem')
 for mod in moduleItems:
-    if mod.get_attribute('modid') == MODULE_ID:        
+    if mod.get_attribute('modid') == MODULE_ID:
         mod.click()
         break
 
@@ -93,7 +94,8 @@ time.sleep(SLEEP_SHORT)
 #          NEW ITEM
 # ===========================
 # Select the new button to create an inventory item
-newItemBtn = browser.find_element_by_css_selector("img[src='images/toolbar/new.jpg']")
+newItemBtn = browser.find_element_by_css_selector(
+    "img[src='images/toolbar/new.jpg']")
 newItemBtn.click()
 
 # Wait for DOM to load
@@ -112,7 +114,7 @@ inputsDict = {
     'txtCity': 'Testtown',
     'txtState': 'Teststate',
     'txtZip': '99999',
-    'txtTaxRate': '9'    
+    'txtTaxRate': '9'
 }
 
 for inputId, val in inputsDict.items():
