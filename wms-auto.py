@@ -6,7 +6,7 @@ from selenium.webdriver.common.keys import Keys
 # ===========================
 #         CONSTANTS
 # ===========================
-APP_ENV = "TEST"
+APP_ENV = 'TEST'
 SLEEP_SHORT = 2
 SLEEP_LONG = 4
 
