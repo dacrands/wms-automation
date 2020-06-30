@@ -3,7 +3,7 @@ import time
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 
-APP_ENV = "SDI test"
+APP_ENV = "TEST"
 
 browser = webdriver.Chrome()
 browser.get('http://fs3s-wms/mc_web/onsite/default.htm')
@@ -19,16 +19,21 @@ usernameInput.send_keys('admin')
 passwordInput = browser.find_element_by_name('fld_password')
 passwordInput.send_keys(os.environ['WMS_PW'])
 
+# Login
 # This is an img with a click event
 loginBtn = browser.find_element_by_css_selector("img[src='images/mc_okbutton_opt.jpg']")
 loginBtn.send_keys(Keys.RETURN)
 
 time.sleep(2)
 
+# There are two buttons, one for each env (TEST and PROD)
+# Click the first to access TEST click the second to access PROD
 testEnvBtns = browser.find_elements_by_class_name('browseicon')
-print(testEnvBtns)
-for el in testEnvBtns:
-    print(el.text)
-    # if el.text == APP_ENV:
-    #     el.send_keys(Keys.RETURN)
+
+if APP_ENV == "TEST":
+    testEnvBtns[0].click()
+elif APP_ENV == "PROD":
+    testEnvBtns[1].click()
+else:
+    print("Please set APP_ENV to either TEST or PROD")
 
