@@ -5,7 +5,8 @@ from selenium.webdriver.common.keys import Keys
 
 APP_ENV = "TEST"
 MANAGER_APP_IFRAME_SRC = "http://fs3s-wms/mc_web/onsite/mc_appchoice.htm"
-SLEEP_TIME = 2
+SLEEP_SHORT = 2
+SLEEP_LONG = 4
 
 browser = webdriver.Chrome()
 browser.get('http://fs3s-wms/mc_web/onsite/default.htm')
@@ -27,7 +28,7 @@ loginBtn = browser.find_element_by_css_selector("img[src='images/mc_okbutton_opt
 loginBtn.send_keys(Keys.RETURN)
 
 # Wait for DOM to load
-time.sleep(SLEEP_TIME)
+time.sleep(SLEEP_SHORT)
 
 # There are two buttons, one for each env (TEST and PROD)
 # Click the first to access TEST click the second to access PROD
@@ -41,7 +42,7 @@ else:
     print('Please set APP_ENV to either TEST or PROD')
 
 # Wait for DOM to load
-time.sleep(SLEEP_TIME)
+time.sleep(SLEEP_SHORT)
 
 # Select `managerapp` from iframe
 appIframes = browser.find_elements_by_tag_name('iframe')
@@ -53,7 +54,7 @@ for frame in appIframes:
         break
 
 # Wait for DOM to load
-time.sleep(4)
+time.sleep(SLEEP_LONG)
 
 # greenbardropdowntable
 modulesDropdown = browser.find_element_by_id('greenbardropdowntable')
