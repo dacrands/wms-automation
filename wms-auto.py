@@ -50,7 +50,6 @@ time.sleep(SLEEP_SHORT)
 # There are two buttons, one for each env (TEST and PROD)
 # Click the first to access TEST click the second to access PROD
 testEnvBtns = browser.find_elements_by_class_name('browseicon')
-
 if APP_ENV == 'TEST':
     testEnvBtns[0].click()
 elif APP_ENV == 'PROD':
