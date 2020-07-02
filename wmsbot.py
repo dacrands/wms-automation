@@ -52,6 +52,9 @@ loginBtn = browser.find_element_by_css_selector(
     "img[src='images/mc_okbutton_opt.jpg']")
 loginBtn.send_keys(Keys.RETURN)
 
+# Log login
+logging.info('Bot logged in.')
+
 # TODO Replace sleeps with WebDriverWait
 # Wait for DOM to load
 time.sleep(SLEEP_SHORT)
@@ -159,3 +162,15 @@ for newItem in newItemsList:
         "img[src='images/toolbar/cancelit.jpg']")
     cancelBtn.click()
 
+# Wait for DOM to load
+time.sleep(SLEEP_SHORT)
+
+
+# ===========================
+#          LOG OFF
+# ===========================
+logoffBtn = browser.find_element_by_css_selector('img[src="images/toolbar/logoff3.jpg"]')
+logoffBtn.click()
+
+# Log logoff
+logging.info('Bot logged out.')
