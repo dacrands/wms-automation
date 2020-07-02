@@ -174,3 +174,9 @@ logoffBtn.click()
 
 # Log logoff
 logging.info('Bot logged out.')
+
+
+# ===========================
+#       CLOSE BROWSER
+# ===========================
+browser.close()
