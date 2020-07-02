@@ -9,7 +9,7 @@ from selenium.common.exceptions import NoSuchElementException
 # ===========================
 #         CONSTANTS
 # ===========================
-ERROR_LOG_FILENAME = 'error.log'
+ERROR_LOG_FILENAME = 'app.log'
 
 APP_ENV = 'TEST'
 SLEEP_SHORT = 2
@@ -21,7 +21,7 @@ MODULE_ID = 'CM'
 # ===========================
 #       LOGGING INIT
 # ===========================
-logging.basicConfig(filename=ERROR_LOG_FILENAME, format='%(asctime)s %(levelname)s:%(message)s', level=logging.ERROR)
+logging.basicConfig(filename=ERROR_LOG_FILENAME, format='%(asctime)s %(levelname)s:%(message)s', level=logging.INFO)
 
 
 # ===========================
@@ -211,7 +211,7 @@ for newItem in newItemsList:
         # Write error to log
         logging.error('{0} was not added.'.format(newItem['txtCompany'])) 
     except NoSuchElementException:
-        print("Item added")
+        logging.info('{0} was added.'.format(newItem['txtCompany']))
 
     # Wait for DOM to load
     time.sleep(SLEEP_SHORT)
