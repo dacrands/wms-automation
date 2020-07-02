@@ -1,5 +1,6 @@
 import os
 import time
+import logging
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.common.exceptions import NoSuchElementException
@@ -7,12 +8,21 @@ from selenium.common.exceptions import NoSuchElementException
 # ===========================
 #         CONSTANTS
 # ===========================
+ERROR_LOG_FILENAME = 'error.log'
+
 APP_ENV = 'TEST'
 SLEEP_SHORT = 2
 SLEEP_LONG = 4
 
 MANAGER_APP_IFRAME_SRC = 'http://fs3s-wms/mc_web/onsite/mc_appchoice.htm'
 MODULE_ID = 'CM'
+
+
+# ===========================
+#       LOGGING INIT
+# ===========================
+logging.basicConfig(filename=ERROR_LOG_FILENAME, level=logging.ERROR)
+
 
 # ===========================
 #        DRIVER INIT
@@ -85,7 +95,6 @@ for mod in moduleItems:
     if mod.get_attribute('modid') == MODULE_ID:
         mod.click()
         break
-
 
 
 # ===========================
@@ -203,7 +212,10 @@ for newItem in newItemsList:
         okBtn.click()
 
         # Switch back to main page
-        browser.switch_to.default_content()        
+        browser.switch_to.default_content()       
+
+        # Write error to log
+        logging.error('{0} was not added.'.format(newItem['txtCompany'])) 
     except NoSuchElementException:
         print("Item added")
 
