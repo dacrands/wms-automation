@@ -2,6 +2,7 @@ import os
 import time
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
+from selenium.common.exceptions import NoSuchElementException
 
 # ===========================
 #         CONSTANTS
@@ -85,37 +86,108 @@ for mod in moduleItems:
         mod.click()
         break
 
-# Wait for DOM to load
-time.sleep(SLEEP_SHORT)
 
 
 # ===========================
 #          NEW ITEM
 # ===========================
-# Select the new button to create an inventory item
-newItemBtn = browser.find_element_by_css_selector(
-    "img[src='images/toolbar/new.jpg']")
-newItemBtn.click()
+# Fill out inputs using a list of dicts
+newItemsList = [
+    {
+        'txtCompany': 'test-0',
+        'txtCompanyName': 'Test Company 0',
+        'txtType': 'V',
+        'txtAddress': '9999 Test Drive',
+        'txtCity': 'Testtown',
+        'txtState': 'Teststate',
+        'txtZip': '99999',
+        'txtTaxRate': '9'
+    },
+     {
+        'txtCompany': 'test-1',
+        'txtCompanyName': 'Test Company 1',
+        'txtType': 'V',
+        'txtAddress': '9999 Test Drive',
+        'txtCity': 'Testtown',
+        'txtState': 'Teststate',
+        'txtZip': '99999',
+        'txtTaxRate': '9'
+    },
+     {
+        'txtCompany': 'test-2',
+        'txtCompanyName': 'Test Company 2',
+        'txtType': 'V',
+        'txtAddress': '9999 Test Drive',
+        'txtCity': 'Testtown',
+        'txtState': 'Teststate',
+        'txtZip': '99999',
+        'txtTaxRate': '9'
+    },
+     {
+        'txtCompany': 'test-3',
+        'txtCompanyName': 'Test Company 3',
+        'txtType': 'V',
+        'txtAddress': '9999 Test Drive',
+        'txtCity': 'Testtown',
+        'txtState': 'Teststate',
+        'txtZip': '99999',
+        'txtTaxRate': '9'
+    },
+     {
+        'txtCompany': 'test-4',
+        'txtCompanyName': 'Test Company 4',
+        'txtType': 'V',
+        'txtAddress': '9999 Test Drive',
+        'txtCity': 'Testtown',
+        'txtState': 'Teststate',
+        'txtZip': '99999',
+        'txtTaxRate': '9'
+    },
+]
 
-# Wait for DOM to load
-time.sleep(SLEEP_SHORT)
+for newItem in newItemsList:
+    # Wait for DOM to load
+    time.sleep(SLEEP_SHORT)
 
-# Switch to iFrame containing inputs
-inputsIframe = browser.find_element_by_id('fraTopic')
-browser.switch_to.frame(inputsIframe)
+    # Select the new button to create an inventory item
+    newItemBtn = browser.find_element_by_css_selector(
+        "img[src='images/toolbar/new.jpg']")
+    newItemBtn.click()
 
-# Fill out inputs using dict
-inputsDict = {
-    'txtCompany': '999999',
-    'txtCompanyName': 'Test Company',
-    'txtType': 'V',
-    'txtAddress': '9999 Test Drive',
-    'txtCity': 'Testtown',
-    'txtState': 'Teststate',
-    'txtZip': '99999',
-    'txtTaxRate': '9'
-}
+    # Wait for DOM to load
+    time.sleep(SLEEP_SHORT)
 
-for inputId, val in inputsDict.items():
-    companyIdInput = browser.find_element_by_id(inputId)
-    companyIdInput.send_keys(val)
+    # Switch to iFrame containing inputs
+    inputsIframe = browser.find_element_by_id('fraTopic')
+    browser.switch_to.frame(inputsIframe)
+    for inputId, val in newItem.items():
+        companyIdInput = browser.find_element_by_id(inputId)
+        companyIdInput.send_keys(val)
+
+    # Switch back to main page
+    browser.switch_to.default_content()
+
+    # Wait for DOM to load
+    time.sleep(SLEEP_SHORT)
+
+    # Save the new item
+    saveBtn = browser.find_element_by_css_selector(
+        "img[src='images/toolbar/saveit.jpg']")
+    saveBtn.click()
+
+    # Wait for DOM to load
+    time.sleep(SLEEP_SHORT)
+
+    try:
+        alertIframe = browser.find_element_by_css_selector(
+            "iframe[src='/mc_web/mapp_v12/mcalert.asp?title=Company Message'")
+    except NoSuchElementException:
+        print("Item added")
+
+    # Wait for DOM to load
+    time.sleep(SLEEP_SHORT)
+
+    cancelBtn = browser.find_element_by_css_selector(
+        "img[src='images/toolbar/cancelit.jpg']")
+    cancelBtn.click()
+
