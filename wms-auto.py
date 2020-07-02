@@ -21,7 +21,7 @@ MODULE_ID = 'CM'
 # ===========================
 #       LOGGING INIT
 # ===========================
-logging.basicConfig(filename=ERROR_LOG_FILENAME, level=logging.ERROR)
+logging.basicConfig(filename=ERROR_LOG_FILENAME, format='%(asctime)s %(levelname)s:%(message)s', level=logging.ERROR)
 
 
 # ===========================
