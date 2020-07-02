@@ -104,7 +104,7 @@ newItemsList = [
         'txtTaxRate': '9'
     },
      {
-        'txtCompany': 'test-1',
+        'txtCompany': 'test-0',
         'txtCompanyName': 'Test Company 1',
         'txtType': 'V',
         'txtAddress': '9999 Test Drive',
@@ -126,6 +126,16 @@ newItemsList = [
      {
         'txtCompany': 'test-3',
         'txtCompanyName': 'Test Company 3',
+        'txtType': 'V',
+        'txtAddress': '9999 Test Drive',
+        'txtCity': 'Testtown',
+        'txtState': 'Teststate',
+        'txtZip': '99999',
+        'txtTaxRate': '9'
+    },
+     {
+        'txtCompany': 'test-4',
+        'txtCompanyName': 'Test Company 4',
         'txtType': 'V',
         'txtAddress': '9999 Test Drive',
         'txtCity': 'Testtown',
@@ -179,8 +189,21 @@ for newItem in newItemsList:
     time.sleep(SLEEP_SHORT)
 
     try:
+        # Find alert for item ID exists
         alertIframe = browser.find_element_by_css_selector(
-            "iframe[src='/mc_web/mapp_v12/mcalert.asp?title=Company Message'")
+            "iframe[src='/mc_web/mapp_v12/mcalert.asp?title=Company Message']")
+        browser.switch_to.frame(alertIframe)
+
+        # Wait for DOM to load
+        time.sleep(SLEEP_SHORT)
+
+        # Close alert
+        okBtn = browser.find_element_by_xpath(
+            '//div[@id="bg_okprint"]/button')        
+        okBtn.click()
+
+        # Switch back to main page
+        browser.switch_to.default_content()        
     except NoSuchElementException:
         print("Item added")
 
