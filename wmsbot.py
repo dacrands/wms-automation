@@ -5,6 +5,8 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.common.exceptions import NoSuchElementException
 
+from seed import newItemsList
+
 
 # ===========================
 #         CONSTANTS
@@ -95,69 +97,6 @@ module.click()
 #          NEW ITEM
 # ===========================
 # Fill out inputs using a list of dicts
-newItemsList = [
-    {
-        'txtCompany': 'test-0',
-        'txtCompanyName': 'Test Company 0',
-        'txtType': 'V',
-        'txtAddress': '9999 Test Drive',
-        'txtCity': 'Testtown',
-        'txtState': 'Teststate',
-        'txtZip': '99999',
-        'txtTaxRate': '9'
-    },
-     {
-        'txtCompany': 'test-0',
-        'txtCompanyName': 'Test Company 1',
-        'txtType': 'V',
-        'txtAddress': '9999 Test Drive',
-        'txtCity': 'Testtown',
-        'txtState': 'Teststate',
-        'txtZip': '99999',
-        'txtTaxRate': '9'
-    },
-     {
-        'txtCompany': 'test-2',
-        'txtCompanyName': 'Test Company 2',
-        'txtType': 'V',
-        'txtAddress': '9999 Test Drive',
-        'txtCity': 'Testtown',
-        'txtState': 'Teststate',
-        'txtZip': '99999',
-        'txtTaxRate': '9'
-    },
-     {
-        'txtCompany': 'test-3',
-        'txtCompanyName': 'Test Company 3',
-        'txtType': 'V',
-        'txtAddress': '9999 Test Drive',
-        'txtCity': 'Testtown',
-        'txtState': 'Teststate',
-        'txtZip': '99999',
-        'txtTaxRate': '9'
-    },
-     {
-        'txtCompany': 'test-4',
-        'txtCompanyName': 'Test Company 4',
-        'txtType': 'V',
-        'txtAddress': '9999 Test Drive',
-        'txtCity': 'Testtown',
-        'txtState': 'Teststate',
-        'txtZip': '99999',
-        'txtTaxRate': '9'
-    },
-     {
-        'txtCompany': 'test-4',
-        'txtCompanyName': 'Test Company 4',
-        'txtType': 'V',
-        'txtAddress': '9999 Test Drive',
-        'txtCity': 'Testtown',
-        'txtState': 'Teststate',
-        'txtZip': '99999',
-        'txtTaxRate': '9'
-    },
-]
-
 for newItem in newItemsList:
     # Wait for DOM to load
     time.sleep(SLEEP_SHORT)
