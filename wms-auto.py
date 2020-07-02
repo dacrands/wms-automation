@@ -5,6 +5,7 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.common.exceptions import NoSuchElementException
 
+
 # ===========================
 #         CONSTANTS
 # ===========================
@@ -14,7 +15,6 @@ APP_ENV = 'TEST'
 SLEEP_SHORT = 2
 SLEEP_LONG = 4
 
-MANAGER_APP_IFRAME_SRC = 'mc_appchoice.htm'
 MODULE_ID = 'CM'
 
 
@@ -76,7 +76,7 @@ time.sleep(SLEEP_SHORT)
 #         APP SELECT
 # ===========================
 # Select `managerapp` from iframe
-managerAppIframe = browser.find_element_by_css_selector('iframe[src="{}"]'.format(MANAGER_APP_IFRAME_SRC))
+managerAppIframe = browser.find_element_by_css_selector('iframe[src="mc_appchoice.htm"]')
 browser.switch_to.frame(managerAppIframe)
 managerApp = browser.find_element_by_id('managerapp')
 managerApp.click()
