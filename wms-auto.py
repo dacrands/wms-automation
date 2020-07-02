@@ -87,11 +87,8 @@ time.sleep(SLEEP_LONG)
 # Select the module by ID
 modulesDropdown = browser.find_element_by_id('greenbardropdowntable')
 modulesDropdown.click()
-moduleItems = browser.find_elements_by_class_name('mitem')
-for mod in moduleItems:
-    if mod.get_attribute('modid') == MODULE_ID:
-        mod.click()
-        break
+module = browser.find_element_by_css_selector('span[modid="{}"]'.format(MODULE_ID))
+module.click()
 
 
 # ===========================
