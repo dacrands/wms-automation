@@ -11,7 +11,7 @@ from seed import newItemsList
 # ===========================
 #         CONSTANTS
 # ===========================
-ERROR_LOG_FILENAME = 'app.log'
+LOG_FILENAME = 'app.log'
 
 APP_ENV = 'TEST'
 SLEEP_SHORT = 2
@@ -23,7 +23,7 @@ MODULE_ID = 'CM'
 # ===========================
 #       LOGGING INIT
 # ===========================
-logging.basicConfig(filename=ERROR_LOG_FILENAME, format='%(asctime)s %(levelname)s:%(message)s', level=logging.INFO)
+logging.basicConfig(filename=LOG_FILENAME, format='%(asctime)s %(levelname)s:%(message)s', level=logging.INFO)
 
 
 # ===========================
