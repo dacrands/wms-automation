@@ -30,7 +30,7 @@ logging.basicConfig(filename=LOG_FILENAME, format='%(asctime)s %(levelname)s:%(m
 #        DRIVER INIT
 # ===========================
 browser = webdriver.Chrome()
-browser.get('http://fs3s-wms/mc_web/onsite/default.htm')
+browser.get(os.environ['BASE_URL'])
 
 
 # ===========================
