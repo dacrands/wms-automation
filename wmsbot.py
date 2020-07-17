@@ -34,7 +34,10 @@ logging.basicConfig(filename=LOG_FILENAME, format='%(asctime)s %(levelname)s:%(m
 # ===========================
 browser = webdriver.Chrome()
 browser.get(os.environ['BASE_URL'])
-browser.set_network_conditions(latency=200, download_throughput=150 * 1024, upload_throughput=150 * 1024,)
+
+# Uncomment to enable custom network conditions
+# browser.set_network_conditions(latency=200, download_throughput=150 * 1024, upload_throughput=150 * 1024,)
+
 wait = WebDriverWait(browser, 20)
 
 
