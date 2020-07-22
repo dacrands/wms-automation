@@ -20,7 +20,7 @@ cursor.execute("""
                     ,[City] 
                     ,[State] 
                     ,[Zip Code] FROM [SFRD].[dbo].[Vendors]
-                WHERE [Vendor Class ID] != 'EMPLOYEE'
+                WHERE [Vendor Class ID] NOT IN ('EMPLOYEE', 'LEGAL')
             """)
 
 companies = []
