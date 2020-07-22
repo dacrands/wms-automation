@@ -2,17 +2,14 @@ import os
 import pyodbc
 
 
-conn_str = r'Driver={{SQL Server}};Server={0};Database={1};UID={2};PWD={3};'.format(
+CONN_STR = r'Driver={{SQL Server}};Server={0};Database={1};UID={2};PWD={3};'.format(
     os.environ['WMS_GP_SERVER'],
     os.environ['WMS_GP_DB'],
     os.environ['WMS_GP_UID'],
     os.environ['WMS_GP_PWD']
 )
 
-conn = pyodbc.connect(conn_str)
-cursor = conn.cursor()
-
-cursor.execute("""
+COMPANY_QUERY = """
                 SELECT [Vendor ID] as [Vendor Number] 
                     ,[Vendor Name] 
                     ,[Address 1] 
@@ -21,7 +18,12 @@ cursor.execute("""
                     ,[State] 
                     ,[Zip Code] FROM [SFRD].[dbo].[Vendors]
                 WHERE [Vendor Class ID] NOT IN ('EMPLOYEE', 'LEGAL')
-            """)
+                """ 
+
+conn = pyodbc.connect(CONN_STR)
+cursor = conn.cursor()
+
+cursor.execute(COMPANY_QUERY)
 
 companies = []
 row = cursor.fetchone() 
